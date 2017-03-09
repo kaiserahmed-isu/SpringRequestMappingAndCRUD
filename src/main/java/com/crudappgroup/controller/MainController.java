@@ -24,6 +24,15 @@ public class MainController {
         return "My Quick Blog, " + name;
     }
 
+
+    //http://localhost:8080/method8/23/Kaiser
+    @RequestMapping(value="/method8/{id:[\\d]+}/{name}")
+    @ResponseBody
+    public String method8(@PathVariable("id") long id, @PathVariable("name") String name){
+        return "method8 with id= "+id+" and name="+name;
+    }
+
+
     //http://localhost:8080/method9?id=2
     @RequestMapping(value="/method9")
     @ResponseBody
