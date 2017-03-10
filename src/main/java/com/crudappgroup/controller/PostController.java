@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by Razon on 09-Mar-17.
@@ -50,6 +51,15 @@ public class PostController {
     public String deletePost(@PathVariable("id") Long id) {
         postService.delete(id);
         return "Post Deleted!";
+    }
+
+
+    @RequestMapping(value="/post/list", method= RequestMethod.GET)
+    public ModelAndView listPost() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("posts",postService.findAll());
+        modelAndView.setViewName("posts");
+        return modelAndView;
     }
 
 }
